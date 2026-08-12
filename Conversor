@@ -1,0 +1,61 @@
+# Conversor de unidades
+
+# Factores respecto a la unidad base
+longitud = {
+    "mm": 0.001,
+    "cm": 0.01,
+    "m": 1,
+    "km": 1000,
+    "millas": 1609.34,
+    "pies": 0.3048,
+    "pulgadas": 0.0254
+}
+
+masa = {
+    "mg": 0.001,
+    "g": 1,
+    "kg": 1000
+}
+
+tiempo = {
+    "ms": 0.001,
+    "s": 1
+}
+
+print("===== CONVERSOR DE UNIDADES =====")
+print("L = Longitud")
+print("M = Masa")
+print("T = Tiempo")
+
+tipo = input("Seleccione el sistema (L/M/T): ").upper()
+
+if tipo == "L":
+    unidades = longitud
+elif tipo == "M":
+    unidades = masa
+elif tipo == "T":
+    unidades = tiempo
+else:
+    print("Opción no válida.")
+    exit()
+
+print("\nUnidades disponibles:")
+for u in unidades:
+    print("-", u)
+
+origen = input("\nUnidad de origen: ").lower()
+destino = input("Unidad de destino: ").lower()
+
+if origen not in unidades or destino not in unidades:
+    print("Unidad no válida.")
+    exit()
+
+valor = float(input("Ingrese el valor: "))
+
+# Convertir a la unidad base
+base = valor * unidades[origen]
+
+# Convertir a la unidad destino
+resultado = base / unidades[destino]
+
+print(f"\n{valor} {origen} = {resultado} {destino}")
